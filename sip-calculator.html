@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIP Calculator 2025-26 — Systematic Investment Plan Returns | OnlineFinanceTools</title>
+  <meta name="description" content="Free SIP Calculator India 2025-26. Calculate mutual fund SIP returns, maturity amount and wealth gain. See year-by-year growth chart for any monthly investment.">
+  <meta name="keywords" content="SIP calculator, SIP calculator India 2025, systematic investment plan calculator, mutual fund SIP returns, SIP maturity calculator">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <style>
+    :root{--bg:#f7f6f2;--card:#fff;--text:#1a1a1a;--muted:#6b6b6b;--border:#e8e6e0;--accent:#1a6b3c;--al:#e8f5ee;--am:#2d9659;--mono:'DM Mono',monospace}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+    nav{background:var(--card);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo-icon{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:15px;color:#fff;font-weight:500}
+    .logo-text{font-size:16px;font-weight:600;color:var(--text)}
+    .logo-text span{color:var(--accent)}
+    .bc{font-size:13px;color:var(--muted)}
+    .bc a{color:var(--accent);text-decoration:none}
+    .ph{background:var(--card);border-bottom:1px solid var(--border);padding:28px 24px 22px}
+    .ph-tag{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--al);padding:3px 11px;border-radius:20px;margin-bottom:10px;border:1px solid #b5ddc6}
+    .ph h1{font-size:clamp(20px,4vw,28px);font-weight:600;margin-bottom:6px}
+    .ph p{font-size:14px;color:var(--muted);line-height:1.6;max-width:640px}
+    main{max-width:1020px;margin:0 auto;padding:28px 24px 60px;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+    @media(max-width:700px){main{grid-template-columns:1fr}nav .bc{display:none}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+    .ct{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+    .ig{margin-bottom:18px}
+    .il{font-size:13px;font-weight:500;color:var(--text);margin-bottom:7px;display:flex;justify-content:space-between;align-items:center}
+    .iv{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--accent);background:var(--al);padding:2px 8px;border-radius:6px}
+    input[type=number]{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-family:var(--mono);font-weight:500;color:var(--text);background:var(--bg);outline:none;transition:border-color .15s}
+    input[type=number]:focus{border-color:var(--am);background:#fff}
+    input[type=range]{width:100%;margin-top:7px;accent-color:var(--accent);cursor:pointer}
+    .rl{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:3px}
+    .rg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+    .ri{background:var(--bg);border-radius:10px;padding:14px}
+    .ri.hl{background:var(--accent);grid-column:span 2}
+    .rl2{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+    .ri.hl .rl2{color:rgba(255,255,255,.65)}
+    .rv{font-size:20px;font-weight:600;font-family:var(--mono);color:var(--text)}
+    .ri.hl .rv{font-size:24px;color:#fff}
+    .chart-wrap{position:relative;width:100%;height:210px;margin-bottom:12px}
+    .leg{display:flex;gap:14px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+    .leg span{display:flex;align-items:center;gap:5px}
+    .leg b{width:10px;height:10px;border-radius:2px;display:inline-block}
+    .full{grid-column:span 2}
+    @media(max-width:700px){.full{grid-column:span 1}}
+    .tw{max-height:280px;overflow-y:auto;border-radius:8px;border:1px solid var(--border)}
+    table{width:100%;border-collapse:collapse;font-size:12px}
+    thead th{background:var(--bg);padding:9px 11px;text-align:right;font-weight:600;color:var(--muted);font-size:10px;letter-spacing:.04em;text-transform:uppercase;position:sticky;top:0}
+    thead th:first-child{text-align:left}
+    tbody td{padding:8px 11px;text-align:right;border-top:1px solid var(--border);color:var(--muted);font-family:var(--mono)}
+    tbody td:first-child{text-align:left;color:var(--text);font-weight:500;font-family:'DM Sans',sans-serif}
+    tbody tr:hover td{background:var(--al)}
+    details{border-top:1px solid var(--border);padding:13px 0}
+    details:last-child{border-bottom:1px solid var(--border)}
+    summary{font-size:14px;font-weight:500;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+    summary::after{content:'+';font-size:18px;color:var(--accent)}
+    details[open] summary::after{content:'−'}
+    details p{font-size:13px;color:var(--muted);line-height:1.7;margin-top:9px;padding-right:14px}
+    .seo{font-size:14px;color:var(--muted);line-height:1.8}
+    .seo h2{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;margin-top:16px}
+    .seo h2:first-child{margin-top:0}
+    .seo ul{padding-left:18px;margin:6px 0}
+    .seo li{margin-bottom:3px}
+    .tip{background:var(--al);border:1px solid #b5ddc6;border-radius:10px;padding:12px 16px;font-size:13px;color:var(--accent);line-height:1.6;margin-bottom:16px}
+    footer{background:var(--card);border-top:1px solid var(--border);padding:22px 24px;text-align:center}
+    .fl{display:flex;justify-content:center;gap:18px;margin-bottom:9px;flex-wrap:wrap}
+    .fl a{font-size:13px;color:var(--muted);text-decoration:none}
+    .fl a:hover{color:var(--accent)}
+    .fc{font-size:12px;color:var(--muted)}
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"SIP Calculator 2025-26","description":"Calculate SIP returns and mutual fund maturity amount for any monthly investment","url":"https://onlinefinancetools.com/sip-calculator.html","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}}</script>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo"><div class="logo-icon">₹</div><span class="logo-text">Online<span>FinanceTools</span></span></a>
+  <div class="bc"><a href="/">Home</a> › SIP Calculator</div>
+</nav>
+<div class="ph">
+  <div class="ph-tag">Free · Updated FY 2025-26</div>
+  <h1>SIP Calculator 2025-26</h1>
+  <p>Calculate how your monthly SIP investments grow over time with the power of compounding. See your total invested amount, estimated returns, and final corpus.</p>
+</div>
+<main>
+  <div class="card">
+    <div class="ct">Investment details</div>
+    <div class="tip">SIPs benefit most from long tenures — even small monthly amounts grow dramatically after 10+ years due to compounding.</div>
+    <div class="ig">
+      <div class="il">Monthly investment <span class="iv" id="inv-d">₹5,000</span></div>
+      <input type="number" id="inv" value="5000" min="100" max="500000" step="100" oninput="s('inv','invS');c()">
+      <input type="range" id="invS" min="100" max="500000" step="100" value="5000" oninput="s('invS','inv');c()">
+      <div class="rl"><span>₹100</span><span>₹5,00,000</span></div>
+    </div>
+    <div class="ig">
+      <div class="il">Expected return (p.a.) <span class="iv" id="ret-d">12%</span></div>
+      <input type="number" id="ret" value="12" min="1" max="30" step="0.5" oninput="s('ret','retS');c()">
+      <input type="range" id="retS" min="1" max="30" step="0.5" value="12" oninput="s('retS','ret');c()">
+      <div class="rl"><span>1%</span><span>30%</span></div>
+    </div>
+    <div class="ig">
+      <div class="il">Time period <span class="iv" id="yr-d">10 years</span></div>
+      <input type="number" id="yr" value="10" min="1" max="40" step="1" oninput="s('yr','yrS');c()">
+      <input type="range" id="yrS" min="1" max="40" step="1" value="10" oninput="s('yrS','yr');c()">
+      <div class="rl"><span>1 yr</span><span>40 yrs</span></div>
+    </div>
+    <div class="rg">
+      <div class="ri hl"><div class="rl2">Estimated corpus</div><div class="rv" id="corpus">₹0</div></div>
+      <div class="ri"><div class="rl2">Total invested</div><div class="rv" id="tinv">₹0</div></div>
+      <div class="ri"><div class="rl2">Wealth gain</div><div class="rv" id="gain">₹0</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">Growth over time</div>
+    <div class="chart-wrap"><canvas id="ch" role="img" aria-label="Bar chart showing SIP growth: invested amount vs total corpus each year"></canvas></div>
+    <div class="leg">
+      <span><b style="background:#1a6b3c"></b>Total corpus</span>
+      <span><b style="background:#b5ddc6"></b>Amount invested</span>
+    </div>
+  </div>
+  <div class="card full">
+    <div class="ct">Year-by-year breakdown</div>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Year</th><th>Invested this year</th><th>Total invested</th><th>Returns earned</th><th>Total corpus</th></tr></thead>
+        <tbody id="tbl"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card full">
+    <div class="ct" style="margin-bottom:14px">FAQs</div>
+    <details><summary>What is a SIP and how does it work?</summary><p>A SIP (Systematic Investment Plan) lets you invest a fixed amount in a mutual fund every month automatically. Each month, you buy units of the fund at the prevailing NAV. Over time, you accumulate more units — and benefit from rupee cost averaging, which reduces the impact of market volatility. Compounding then multiplies your wealth as returns generate further returns.</p></details>
+    <details><summary>Is 12% return realistic for SIP?</summary><p>The Indian equity market (Nifty 50) has historically delivered 13–15% CAGR over 10+ year periods. Diversified large-cap funds have averaged 11–13% over the last decade. 12% is a commonly used benchmark but is not guaranteed — actual returns depend on market conditions and fund selection. For conservative planning, use 10–11%; for equity-heavy portfolios, 12–14% may be realistic over long tenures.</p></details>
+    <details><summary>What is rupee cost averaging in SIP?</summary><p>Rupee cost averaging means you automatically buy more units when the market is low (low NAV = more units) and fewer units when the market is high. Over time, this averages out your purchase cost — you don't need to time the market. This is the key advantage of SIPs over lump sum investments in volatile markets.</p></details>
+    <details><summary>Can I stop or pause my SIP?</summary><p>Yes. Most mutual fund houses allow you to pause your SIP for 1–3 months without penalty, or stop it entirely at any time. However, your invested units continue to remain in the fund and keep earning returns. Stopping the SIP just means no new units are purchased. You can restart anytime.</p></details>
+  </div>
+  <div class="card full seo">
+    <h2>About this SIP calculator</h2>
+    <p>This free SIP calculator helps you estimate the future value of your monthly mutual fund investments using the compound interest formula. Enter your monthly SIP amount, expected annual return, and investment period to instantly see your estimated corpus, total amount invested, and wealth gain (returns earned).</p>
+    <p>The calculator uses the standard SIP formula: FV = P × [((1 + r)^n – 1) / r] × (1 + r), where P is monthly investment, r is monthly return rate (annual rate ÷ 12 ÷ 100), and n is total number of months. A year-by-year breakdown shows exactly how your investment grows over time.</p>
+    <p>Note: Returns shown are estimates based on the rate you enter. Mutual fund returns are subject to market risk and are not guaranteed. Past performance is not indicative of future returns. Please consult a financial advisor before investing.</p>
+    <h2>How to use this calculator</h2>
+    <ul>
+      <li>Enter your planned monthly SIP amount</li>
+      <li>Set the expected annual return — use 10–12% for equity funds as a conservative estimate</li>
+      <li>Set your investment period — longer = significantly more corpus due to compounding</li>
+      <li>Review the yearly breakdown to see when returns overtake your invested amount</li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <div class="fl"><a href="/">All Calculators</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a></div>
+  <div class="fc">&copy; 2025 OnlineFinanceTools — Estimates only. Not investment advice. Consult a SEBI-registered advisor.</div>
+</footer>
+<script>
+let chart;
+function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN')}
+function s(a,b){document.getElementById(b).value=document.getElementById(a).value;upd()}
+function upd(){
+  document.getElementById('inv-d').textContent=fmt(parseFloat(document.getElementById('inv').value)||0);
+  document.getElementById('ret-d').textContent=(parseFloat(document.getElementById('ret').value)||0).toFixed(1)+'%';
+  const y=parseInt(document.getElementById('yr').value)||1;
+  document.getElementById('yr-d').textContent=y+' year'+(y>1?'s':'');
+}
+function c(){
+  upd();
+  const P=parseFloat(document.getElementById('inv').value)||0;
+  const annR=parseFloat(document.getElementById('ret').value)||0;
+  const years=parseInt(document.getElementById('yr').value)||1;
+  const r=annR/12/100;
+  const rows=[];
+  const labels=[],corpArr=[],invArr=[];
+  let runInv=0,runCorpus=0;
+  for(let y=1;y<=years;y++){
+    const prevCorpus=runCorpus;
+    for(let m=0;m<12;m++){runCorpus=(runCorpus+P)*(1+r);runInv+=P;}
+    rows.push({y,yInv:P*12,runInv,gain:runCorpus-runInv,corpus:runCorpus});
+    labels.push('Yr '+y);corpArr.push(Math.round(runCorpus));invArr.push(Math.round(runInv));
+  }
+  const corpus=runCorpus,tinv=runInv,gain=corpus-tinv;
+  document.getElementById('corpus').textContent=fmt(corpus);
+  document.getElementById('tinv').textContent=fmt(tinv);
+  document.getElementById('gain').textContent=fmt(gain);
+  document.getElementById('tbl').innerHTML=rows.map(r=>`<tr><td>Year ${r.y}</td><td>${fmt(r.yInv)}</td><td>${fmt(r.runInv)}</td><td>${fmt(r.gain)}</td><td>${fmt(r.corpus)}</td></tr>`).join('');
+  if(chart)chart.destroy();
+  const ctx=document.getElementById('ch').getContext('2d');
+  chart=new Chart(ctx,{type:'bar',data:{labels,datasets:[{label:'Total corpus',data:corpArr,backgroundColor:'#1a6b3c',borderRadius:3,borderSkipped:false},{label:'Amount invested',data:invArr,backgroundColor:'#b5ddc6',borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+fmt(c.parsed.y)}}},scales:{x:{ticks:{font:{size:10},color:'#9b9a94',maxTicksLimit:10},grid:{display:false}},y:{ticks:{font:{size:10},color:'#9b9a94',callback:v=>'₹'+(v>=100000?(v/100000).toFixed(0)+'L':(v/1000).toFixed(0)+'K')},grid:{color:'#f0ece4'}}}}});
+}
+c();
+</script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FD Calculator 2025-26 — Fixed Deposit Maturity Calculator India | OnlineFinanceTools</title>
+  <meta name="description" content="Free FD Calculator India 2025-26. Calculate Fixed Deposit maturity amount with monthly, quarterly, half-yearly or annual compounding. Compare all bank FD rates.">
+  <meta name="keywords" content="FD calculator, fixed deposit calculator India 2025, FD maturity calculator, FD interest calculator, bank FD calculator India">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#f7f6f2;--card:#fff;--text:#1a1a1a;--muted:#6b6b6b;--border:#e8e6e0;--accent:#1a6b3c;--al:#e8f5ee;--am:#2d9659;--mono:'DM Mono',monospace}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+    nav{background:var(--card);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo-icon{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:15px;color:#fff;font-weight:500}
+    .logo-text{font-size:16px;font-weight:600;color:var(--text)}
+    .logo-text span{color:var(--accent)}
+    .bc{font-size:13px;color:var(--muted)}
+    .bc a{color:var(--accent);text-decoration:none}
+    .ph{background:var(--card);border-bottom:1px solid var(--border);padding:28px 24px 22px}
+    .ph-tag{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--al);padding:3px 11px;border-radius:20px;margin-bottom:10px;border:1px solid #b5ddc6}
+    .ph h1{font-size:clamp(20px,4vw,28px);font-weight:600;margin-bottom:6px}
+    .ph p{font-size:14px;color:var(--muted);line-height:1.6;max-width:640px}
+    main{max-width:1020px;margin:0 auto;padding:28px 24px 60px;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+    @media(max-width:700px){main{grid-template-columns:1fr}nav .bc{display:none}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+    .ct{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+    .ig{margin-bottom:18px}
+    .il{font-size:13px;font-weight:500;color:var(--text);margin-bottom:7px;display:flex;justify-content:space-between;align-items:center}
+    .iv{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--accent);background:var(--al);padding:2px 8px;border-radius:6px}
+    input[type=number]{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-family:var(--mono);font-weight:500;color:var(--text);background:var(--bg);outline:none;transition:border-color .15s}
+    input[type=number]:focus{border-color:var(--am);background:#fff}
+    input[type=range]{width:100%;margin-top:7px;accent-color:var(--accent);cursor:pointer}
+    .rl{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:3px}
+    select{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg);outline:none;cursor:pointer;transition:border-color .15s;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b6b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+    select:focus{border-color:var(--am);background-color:#fff}
+    .rg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+    .ri{background:var(--bg);border-radius:10px;padding:14px}
+    .ri.hl{background:var(--accent);grid-column:span 2}
+    .rl2{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+    .ri.hl .rl2{color:rgba(255,255,255,.65)}
+    .rv{font-size:20px;font-weight:600;font-family:var(--mono);color:var(--text)}
+    .ri.hl .rv{font-size:24px;color:#fff}
+    .bank-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px}
+    .bcard{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 12px;cursor:pointer;transition:all .15s}
+    .bcard:hover,.bcard.active{border-color:var(--am);background:var(--al)}
+    .bname{font-size:12px;font-weight:500;color:var(--text)}
+    .brate{font-size:11px;color:var(--accent);font-family:var(--mono)}
+    details{border-top:1px solid var(--border);padding:13px 0}
+    details:last-child{border-bottom:1px solid var(--border)}
+    summary{font-size:14px;font-weight:500;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+    summary::after{content:'+';font-size:18px;color:var(--accent)}
+    details[open] summary::after{content:'−'}
+    details p{font-size:13px;color:var(--muted);line-height:1.7;margin-top:9px;padding-right:14px}
+    .full{grid-column:span 2}
+    @media(max-width:700px){.full{grid-column:span 1}}
+    .seo{font-size:14px;color:var(--muted);line-height:1.8}
+    .seo h2{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;margin-top:16px}
+    .seo h2:first-child{margin-top:0}
+    .seo ul{padding-left:18px;margin:6px 0}
+    .seo li{margin-bottom:3px}
+    footer{background:var(--card);border-top:1px solid var(--border);padding:22px 24px;text-align:center}
+    .fl{display:flex;justify-content:center;gap:18px;margin-bottom:9px;flex-wrap:wrap}
+    .fl a{font-size:13px;color:var(--muted);text-decoration:none}
+    .fl a:hover{color:var(--accent)}
+    .fc{font-size:12px;color:var(--muted)}
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"FD Calculator 2025-26","description":"Calculate Fixed Deposit maturity amount with any compounding frequency","url":"https://onlinefinancetools.com/fd-calculator.html","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}}</script>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo"><div class="logo-icon">₹</div><span class="logo-text">Online<span>FinanceTools</span></span></a>
+  <div class="bc"><a href="/">Home</a> › FD Calculator</div>
+</nav>
+<div class="ph">
+  <div class="ph-tag">Free · No login needed</div>
+  <h1>FD Calculator 2025-26</h1>
+  <p>Calculate your Fixed Deposit maturity amount with monthly, quarterly, half-yearly or yearly compounding. Compare rates across major Indian banks.</p>
+</div>
+<main>
+  <div class="card">
+    <div class="ct">FD details</div>
+    <div class="ig">
+      <div class="il">Principal amount <span class="iv" id="p-d">₹1,00,000</span></div>
+      <input type="number" id="p" value="100000" min="1000" max="10000000" step="1000" oninput="s('p','pS');c()">
+      <input type="range" id="pS" min="1000" max="10000000" step="1000" value="100000" oninput="s('pS','p');c()">
+      <div class="rl"><span>₹1,000</span><span>₹1 Cr</span></div>
+    </div>
+    <div class="ig">
+      <div class="il">Interest rate (p.a.) <span class="iv" id="r-d">7.0%</span></div>
+      <input type="number" id="r" value="7" min="1" max="15" step="0.1" oninput="s('r','rS');c()">
+      <input type="range" id="rS" min="1" max="15" step="0.1" value="7" oninput="s('rS','r');c()">
+      <div class="rl"><span>1%</span><span>15%</span></div>
+    </div>
+    <div class="ig">
+      <div class="il">Tenure <span class="iv" id="t-d">2 years</span></div>
+      <input type="number" id="t" value="2" min="1" max="10" step="1" oninput="s('t','tS');c()">
+      <input type="range" id="tS" min="1" max="10" step="1" value="2" oninput="s('tS','t');c()">
+      <div class="rl"><span>1 yr</span><span>10 yrs</span></div>
+    </div>
+    <div class="ig">
+      <div class="il">Compounding frequency</div>
+      <select id="freq" onchange="c()">
+        <option value="12">Monthly</option>
+        <option value="4" selected>Quarterly (most banks)</option>
+        <option value="2">Half-yearly</option>
+        <option value="1">Yearly</option>
+      </select>
+    </div>
+    <div class="rg">
+      <div class="ri hl"><div class="rl2">Maturity amount</div><div class="rv" id="mat">₹0</div></div>
+      <div class="ri"><div class="rl2">Principal</div><div class="rv" id="prin">₹0</div></div>
+      <div class="ri"><div class="rl2">Interest earned</div><div class="rv" id="int">₹0</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">Quick bank rates — FY 2025-26</div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Click any bank to auto-fill its typical 2-year FD rate. Verify on bank website before investing.</p>
+    <div class="bank-grid" id="banks"></div>
+  </div>
+  <div class="card full">
+    <div class="ct" style="margin-bottom:14px">FAQs</div>
+    <details><summary>What is the difference between simple interest and compound interest FD?</summary><p>In a simple interest FD, interest is calculated only on the principal for each period. In a compound interest FD (which all major Indian banks offer), interest earned in each period is added to the principal and earns further interest. Over time, compounding significantly increases returns — the more frequent the compounding (monthly > quarterly > yearly), the higher the effective yield.</p></details>
+    <details><summary>What is TDS on FD interest?</summary><p>Banks deduct TDS (Tax Deducted at Source) at 10% on FD interest if it exceeds ₹40,000 per year (₹50,000 for senior citizens). If your total income is below the taxable limit, you can submit Form 15G (or 15H for senior citizens) to avoid TDS deduction. Note that even if TDS is not deducted, FD interest is fully taxable as "Income from Other Sources" at your applicable slab rate.</p></details>
+    <details><summary>Can I break an FD before maturity?</summary><p>Yes, most banks allow premature withdrawal of FDs. However, you typically lose 0.5% to 1% of the applicable interest rate as a penalty. Some banks offer a "flexi FD" or "auto-sweep FD" linked to your savings account that allows partial withdrawals without significant penalty. Check your bank's specific policy before opening an FD.</p></details>
+    <details><summary>Are senior citizen FD rates higher?</summary><p>Yes. Most Indian banks offer an additional 0.25% to 0.75% interest rate on FDs for senior citizens (aged 60 and above). Some banks offer up to 0.8% additional rate for super senior citizens (80+). If you are a senior citizen, always check the senior citizen rate before booking an FD — it can significantly increase your returns over a long tenure.</p></details>
+  </div>
+  <div class="card full seo">
+    <h2>About this FD calculator</h2>
+    <p>This free Fixed Deposit calculator helps you calculate the maturity amount for any FD with any compounding frequency — monthly, quarterly (used by most Indian banks), half-yearly, or annually. Enter your principal, interest rate, and tenure to instantly get your maturity amount and total interest earned.</p>
+    <p>The FD maturity amount formula is: A = P × (1 + r/n)^(n×t), where P = principal amount, r = annual interest rate, n = compounding frequency per year, and t = tenure in years. Quarterly compounding (n=4) is the standard used by SBI, HDFC, ICICI, Axis Bank, and most other Indian banks for cumulative FDs.</p>
+    <p>Updated for FY 2025-26 with indicative rates for major Indian banks. Always verify the exact rate on your bank's official website or app before booking an FD, as rates change frequently.</p>
+    <h2>Tips to maximise FD returns</h2>
+    <ul>
+      <li>Choose monthly or quarterly compounding over yearly — higher effective yield</li>
+      <li>Senior citizens should always ask for the additional 0.25–0.75% benefit</li>
+      <li>Ladder your FDs across different tenures to manage reinvestment risk</li>
+      <li>Small Finance Banks and some cooperative banks offer higher rates — check DICGC insurance coverage (₹5 lakh per bank) before depositing large amounts</li>
+      <li>Submit Form 15G/15H if eligible to avoid unnecessary TDS deduction</li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <div class="fl"><a href="/">All Calculators</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a></div>
+  <div class="fc">&copy; 2025 OnlineFinanceTools — Rates shown are indicative. Verify with your bank before investing.</div>
+</footer>
+<script>
+const banks=[{name:'SBI',rate:7.0},{name:'HDFC Bank',rate:7.25},{name:'ICICI Bank',rate:7.2},{name:'Axis Bank',rate:7.1},{name:'Kotak Bank',rate:7.25},{name:'PNB',rate:7.05},{name:'Bank of Baroda',rate:7.15},{name:'Canara Bank',rate:7.0}];
+let chart;
+function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN')}
+function s(a,b){document.getElementById(b).value=document.getElementById(a).value;upd()}
+function upd(){
+  document.getElementById('p-d').textContent=fmt(parseFloat(document.getElementById('p').value)||0);
+  document.getElementById('r-d').textContent=(parseFloat(document.getElementById('r').value)||0).toFixed(1)+'%';
+  const t=parseInt(document.getElementById('t').value)||1;
+  document.getElementById('t-d').textContent=t+' year'+(t>1?'s':'');
+}
+function setBank(rate,el){
+  document.getElementById('r').value=rate;document.getElementById('rS').value=rate;
+  document.querySelectorAll('.bcard').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');c();
+}
+function c(){
+  upd();
+  const P=parseFloat(document.getElementById('p').value)||0;
+  const r=parseFloat(document.getElementById('r').value)/100||0;
+  const t=parseInt(document.getElementById('t').value)||1;
+  const n=parseInt(document.getElementById('freq').value)||4;
+  const mat=P*Math.pow(1+r/n,n*t);
+  const int=mat-P;
+  document.getElementById('mat').textContent=fmt(mat);
+  document.getElementById('prin').textContent=fmt(P);
+  document.getElementById('int').textContent=fmt(int);
+}
+// Render bank grid
+document.getElementById('banks').innerHTML=banks.map((b,i)=>`<div class="bcard${i===0?' active':''}" onclick="setBank(${b.rate},this)"><div class="bname">${b.name}</div><div class="brate">${b.rate}% p.a.</div></div>`).join('');
+c();
+</script>
+</body>
+</html>

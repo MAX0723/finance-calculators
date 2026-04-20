@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GST Calculator India 2025-26 — Add & Remove GST, CGST SGST Breakdown | OnlineFinanceTools</title>
+  <meta name="description" content="Free GST Calculator India 2025-26. Add GST to get inclusive price or remove GST to get exclusive price. Shows CGST and SGST breakdown for all GST slabs.">
+  <meta name="keywords" content="GST calculator India 2025, GST calculator, add GST calculator, remove GST calculator, CGST SGST calculator, reverse GST calculator India">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#f7f6f2;--card:#fff;--text:#1a1a1a;--muted:#6b6b6b;--border:#e8e6e0;--accent:#1a6b3c;--al:#e8f5ee;--am:#2d9659;--mono:'DM Mono',monospace}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+    nav{background:var(--card);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo-icon{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:15px;color:#fff;font-weight:500}
+    .logo-text{font-size:16px;font-weight:600;color:var(--text)}
+    .logo-text span{color:var(--accent)}
+    .bc{font-size:13px;color:var(--muted)}
+    .bc a{color:var(--accent);text-decoration:none}
+    .ph{background:var(--card);border-bottom:1px solid var(--border);padding:28px 24px 22px}
+    .ph-tag{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--al);padding:3px 11px;border-radius:20px;margin-bottom:10px;border:1px solid #b5ddc6}
+    .ph h1{font-size:clamp(20px,4vw,28px);font-weight:600;margin-bottom:6px}
+    .ph p{font-size:14px;color:var(--muted);line-height:1.6;max-width:640px}
+    main{max-width:900px;margin:0 auto;padding:28px 24px 60px;display:flex;flex-direction:column;gap:20px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+    .ct{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+    .top-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    @media(max-width:660px){.top-grid{grid-template-columns:1fr}}
+    .ig{margin-bottom:18px}
+    .il{font-size:13px;font-weight:500;color:var(--text);margin-bottom:7px}
+    input[type=number]{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:8px;font-size:16px;font-family:var(--mono);font-weight:500;color:var(--text);background:var(--bg);outline:none;transition:border-color .15s}
+    input[type=number]:focus{border-color:var(--am);background:#fff}
+    .mode-row{display:flex;gap:8px;margin-bottom:18px}
+    .mode-btn{flex:1;padding:10px;font-size:13px;font-weight:500;border:1px solid var(--border);border-radius:8px;cursor:pointer;background:transparent;color:var(--muted);transition:all .15s;font-family:'DM Sans',sans-serif}
+    .mode-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .slab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:6px}
+    @media(max-width:420px){.slab-grid{grid-template-columns:repeat(2,1fr)}}
+    .slab{padding:10px;border:1px solid var(--border);border-radius:8px;cursor:pointer;text-align:center;transition:all .15s;font-weight:500;font-size:14px;color:var(--text);background:var(--bg)}
+    .slab:hover,.slab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .result-card{background:var(--accent);border-radius:12px;padding:22px 24px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    @media(max-width:500px){.result-card{grid-template-columns:1fr}}
+    .res-item{background:rgba(255,255,255,.12);border-radius:8px;padding:12px 14px}
+    .res-item.big{grid-column:span 2;background:rgba(255,255,255,.2)}
+    @media(max-width:500px){.res-item.big{grid-column:span 1}}
+    .res-lbl{font-size:11px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+    .res-val{font-size:18px;font-weight:600;color:#fff;font-family:var(--mono)}
+    .res-item.big .res-val{font-size:24px}
+    .invoice{background:var(--bg);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+    .inv-row{display:flex;justify-content:space-between;padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border)}
+    .inv-row:last-child{border-bottom:none;font-weight:600;font-size:14px;background:var(--al)}
+    .inv-row span:last-child{font-family:var(--mono);font-weight:500}
+    details{border-top:1px solid var(--border);padding:13px 0}
+    details:last-child{border-bottom:1px solid var(--border)}
+    summary{font-size:14px;font-weight:500;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+    summary::after{content:'+';font-size:18px;color:var(--accent)}
+    details[open] summary::after{content:'−'}
+    details p{font-size:13px;color:var(--muted);line-height:1.7;margin-top:9px;padding-right:14px}
+    .seo{font-size:14px;color:var(--muted);line-height:1.8}
+    .seo h2{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;margin-top:16px}
+    .seo h2:first-child{margin-top:0}
+    .seo ul{padding-left:18px;margin:6px 0}
+    .seo li{margin-bottom:3px}
+    footer{background:var(--card);border-top:1px solid var(--border);padding:22px 24px;text-align:center}
+    .fl{display:flex;justify-content:center;gap:18px;margin-bottom:9px;flex-wrap:wrap}
+    .fl a{font-size:13px;color:var(--muted);text-decoration:none}
+    .fl a:hover{color:var(--accent)}
+    .fc{font-size:12px;color:var(--muted)}
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"GST Calculator India 2025-26","description":"Add or remove GST with CGST and SGST breakdown for all Indian GST slabs","url":"https://onlinefinancetools.com/gst-calculator.html","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}}</script>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo"><div class="logo-icon">₹</div><span class="logo-text">Online<span>FinanceTools</span></span></a>
+  <div class="bc"><a href="/">Home</a> › GST Calculator</div>
+</nav>
+<div class="ph">
+  <div class="ph-tag">Free · All GST slabs</div>
+  <h1>GST Calculator India 2025-26</h1>
+  <p>Add GST to get the inclusive price, or remove GST from the MRP to get the original price. Shows CGST and SGST split for intra-state transactions.</p>
+</div>
+<main>
+  <div class="card">
+    <div class="ct">Calculate GST</div>
+    <div class="top-grid">
+      <div>
+        <div style="margin-bottom:12px">
+          <div class="il">Mode</div>
+          <div class="mode-row">
+            <button class="mode-btn active" id="mAdd" onclick="setMode('add')">Add GST</button>
+            <button class="mode-btn" id="mRem" onclick="setMode('remove')">Remove GST</button>
+          </div>
+        </div>
+        <div class="ig">
+          <div class="il" id="amt-lbl">Amount (excl. GST)</div>
+          <input type="number" id="amt" value="1000" min="0" step="1" oninput="c()">
+        </div>
+      </div>
+      <div>
+        <div class="il">GST rate</div>
+        <div class="slab-grid">
+          <div class="slab active" onclick="setSlab(5,this)">5%</div>
+          <div class="slab" onclick="setSlab(12,this)">12%</div>
+          <div class="slab" onclick="setSlab(18,this)">18%</div>
+          <div class="slab" onclick="setSlab(28,this)">28%</div>
+          <div class="slab" onclick="setSlab(0,this)">0%</div>
+          <div class="slab" onclick="setSlab(3,this)">3%</div>
+        </div>
+      </div>
+    </div>
+    <div class="result-card">
+      <div class="res-item big"><div class="res-lbl" id="res-main-lbl">Price with GST</div><div class="res-val" id="res-main">₹1,050</div></div>
+      <div class="res-item"><div class="res-lbl">CGST (<span id="cgst-rate">2.5</span>%)</div><div class="res-val" id="cgst">₹25</div></div>
+      <div class="res-item"><div class="res-lbl">SGST (<span id="sgst-rate">2.5</span>%)</div><div class="res-val" id="sgst">₹25</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ct">Invoice breakdown</div>
+    <div class="invoice" id="invoice"></div>
+  </div>
+
+  <div class="card">
+    <div class="ct" style="margin-bottom:14px">FAQs</div>
+    <details><summary>What is the difference between CGST, SGST, and IGST?</summary><p>For intra-state (within one state) transactions, GST is split equally into CGST (Central GST, collected by Centre) and SGST (State GST, collected by the state government). For inter-state transactions, IGST (Integrated GST) applies — collected by the Centre and shared with the destination state. Example: 18% GST within Maharashtra = 9% CGST + 9% SGST. 18% GST from Maharashtra to Delhi = 18% IGST.</p></details>
+    <details><summary>How do I calculate GST backward (remove GST)?</summary><p>To find the original price excluding GST from a GST-inclusive price: Original Price = (GST-inclusive price × 100) / (100 + GST rate). Example: If MRP is ₹1,180 with 18% GST, original price = (1180 × 100) / 118 = ₹1,000. GST amount = ₹1,180 – ₹1,000 = ₹180. Our calculator does this automatically with the "Remove GST" mode.</p></details>
+    <details><summary>Which products fall under which GST slab?</summary><p>0%: Fresh food, milk, eggs, books, newspapers. 5%: Packaged food, household goods, economy hotels. 12%: Processed foods, phones, computers, business hotels. 18%: Most services (CA, restaurant), electronics, FMCG products, financial services. 28%: Luxury goods, cars, motorcycles above 350cc, tobacco, aerated drinks. 3%: Gold, silver, and precious jewellery.</p></details>
+    <details><summary>Is GST applicable on exports?</summary><p>No. Exports are zero-rated under GST, meaning the exporter pays 0% GST on exported goods or services. Additionally, exporters can claim a refund of input tax credit (ITC) on inputs used to produce the exported goods. This makes Indian exports more competitive globally. However, the export must be accompanied by a Letter of Undertaking (LUT) or bond.</p></details>
+  </div>
+
+  <div class="card seo">
+    <h2>About this GST calculator</h2>
+    <p>This free GST calculator supports two modes — Add GST (calculate GST-inclusive price from the base price) and Remove GST (reverse-calculate the base price from a GST-inclusive MRP). It covers all Indian GST slabs: 0%, 3%, 5%, 12%, 18%, and 28%.</p>
+    <p>For intra-state transactions, the GST amount is split equally into CGST (Central Goods and Services Tax) and SGST (State Goods and Services Tax). The calculator shows both components separately, making it easy to fill GST invoices accurately.</p>
+    <p>To add GST: enter the base price (excluding GST) and select the applicable rate — the calculator shows the total price and the GST amount. To remove GST: switch to "Remove GST" mode, enter the MRP or the GST-inclusive price, and the calculator shows the original price before GST.</p>
+    <h2>GST slabs in India 2025-26</h2>
+    <ul>
+      <li>0% — Fresh vegetables, milk, eggs, books, newspapers, salt</li>
+      <li>3% — Gold, silver, precious stones and jewellery</li>
+      <li>5% — Packaged food items, tea, coffee, spices, economy hotels</li>
+      <li>12% — Processed foods, business hotels, computers, mobile phones</li>
+      <li>18% — Most services, electronics, FMCG goods, financial services, restaurants</li>
+      <li>28% — Luxury goods, cars, motorcycles, tobacco, aerated drinks, casinos</li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <div class="fl"><a href="/">All Calculators</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a></div>
+  <div class="fc">&copy; 2025 OnlineFinanceTools — For reference only. Consult a CA for GST compliance advice.</div>
+</footer>
+<script>
+let mode='add',slab=5;
+function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN')}
+function setMode(m){
+  mode=m;
+  document.getElementById('mAdd').classList.toggle('active',m==='add');
+  document.getElementById('mRem').classList.toggle('active',m==='remove');
+  document.getElementById('amt-lbl').textContent=m==='add'?'Amount (excl. GST)':'Amount (incl. GST)';
+  c();
+}
+function setSlab(r,el){
+  slab=r;
+  document.querySelectorAll('.slab').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');c();
+}
+function c(){
+  const amt=parseFloat(document.getElementById('amt').value)||0;
+  let base,gstAmt,total;
+  if(mode==='add'){base=amt;gstAmt=base*slab/100;total=base+gstAmt;}
+  else{total=amt;base=total*100/(100+slab);gstAmt=total-base;}
+  const half=slab/2;
+  document.getElementById('cgst-rate').textContent=half;
+  document.getElementById('sgst-rate').textContent=half;
+  document.getElementById('cgst').textContent=fmt(gstAmt/2);
+  document.getElementById('sgst').textContent=fmt(gstAmt/2);
+  document.getElementById('res-main-lbl').textContent=mode==='add'?'Price with GST':'Original price (excl. GST)';
+  document.getElementById('res-main').textContent=mode==='add'?fmt(total):fmt(base);
+  document.getElementById('invoice').innerHTML=`
+    <div class="inv-row"><span>Base amount</span><span>${fmt(base)}</span></div>
+    <div class="inv-row"><span>CGST @ ${half}%</span><span>${fmt(gstAmt/2)}</span></div>
+    <div class="inv-row"><span>SGST @ ${half}%</span><span>${fmt(gstAmt/2)}</span></div>
+    <div class="inv-row"><span>Total GST (${slab}%)</span><span>${fmt(gstAmt)}</span></div>
+    <div class="inv-row"><span>Total payable</span><span>${fmt(total)}</span></div>
+  `;
+}
+c();
+</script>
+</body>
+</html>
