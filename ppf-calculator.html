@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PPF Calculator 2025-26 — Public Provident Fund Calculator India | RupeeCalc</title>
+  <meta name="description" content="Free PPF Calculator for FY 2025-26. Calculate your Public Provident Fund maturity amount at 7.1% interest rate. Includes yearly breakdown and tax benefits.">
+  <meta name="keywords" content="PPF calculator, PPF calculator 2025-26, public provident fund calculator, PPF interest calculator India, PPF maturity calculator">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <style>
+    :root {
+      --bg: #f7f6f2;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --muted: #6b6b6b;
+      --border: #e8e6e0;
+      --accent: #1a6b3c;
+      --accent-light: #e8f5ee;
+      --accent-mid: #2d9659;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    nav {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 32px; height: 32px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 16px; font-weight: 500; color: white;
+    }
+    .logo-text { font-size: 17px; font-weight: 600; color: var(--text); }
+    .logo-text span { color: var(--accent); }
+    .breadcrumb {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .breadcrumb a { color: var(--accent); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    .page-header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 24px;
+    }
+    .page-header h1 {
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .page-header p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .rate-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      border: 1px solid #b5ddc6;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 28px 24px 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    @media (max-width: 700px) {
+      main { grid-template-columns: 1fr; }
+      nav .breadcrumb { display: none; }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    /* INPUTS */
+    .input-group { margin-bottom: 20px; }
+    .input-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .input-value {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .input-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .input-row input[type="number"] {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: 'DM Mono', monospace;
+      font-weight: 500;
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .input-row input[type="number"]:focus {
+      border-color: var(--accent-mid);
+      background: white;
+    }
+    input[type="range"] {
+      width: 100%;
+      margin-top: 8px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .rate-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: var(--accent-light);
+      border: 1px solid #b5ddc6;
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .rate-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent-mid);
+      flex-shrink: 0;
+    }
+
+    /* RESULTS */
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .result-item {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .result-item.highlight {
+      background: var(--accent);
+      grid-column: span 2;
+    }
+    .result-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+    .result-item.highlight .result-label { color: rgba(255,255,255,0.7); }
+    .result-value {
+      font-size: 20px;
+      font-weight: 600;
+      font-family: 'DM Mono', monospace;
+      color: var(--text);
+    }
+    .result-item.highlight .result-value {
+      font-size: 26px;
+      color: white;
+    }
+
+    /* CHART */
+    .chart-wrap {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      margin-bottom: 16px;
+    }
+
+    /* TABLE */
+    .table-wrap {
+      max-height: 280px;
+      overflow-y: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    thead th {
+      background: var(--bg);
+      padding: 10px 12px;
+      text-align: right;
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      position: sticky;
+      top: 0;
+    }
+    thead th:first-child { text-align: left; }
+    tbody td {
+      padding: 9px 12px;
+      text-align: right;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+    }
+    tbody td:first-child {
+      text-align: left;
+      color: var(--text);
+      font-weight: 500;
+      font-family: 'DM Sans', sans-serif;
+    }
+    tbody tr:hover td { background: var(--accent-light); }
+
+    /* TAX BENEFIT BANNER */
+    .tax-banner {
+      background: var(--accent-light);
+      border: 1px solid #b5ddc6;
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--accent);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .tax-banner strong { font-weight: 600; }
+
+    /* FULL WIDTH SECTION */
+    .full-width {
+      grid-column: span 2;
+    }
+    @media (max-width: 700px) {
+      .full-width { grid-column: span 1; }
+    }
+
+    /* FAQ */
+    .faq-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .faq-section h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    details {
+      border-top: 1px solid var(--border);
+      padding: 14px 0;
+    }
+    details:last-child { border-bottom: 1px solid var(--border); }
+    summary {
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text);
+    }
+    summary::after {
+      content: '+';
+      font-size: 18px;
+      color: var(--accent);
+      font-weight: 400;
+      transition: transform 0.2s;
+    }
+    details[open] summary::after { content: '−'; }
+    details p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: 10px;
+      padding-right: 16px;
+    }
+
+    /* SEO content */
+    .seo-content {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .seo-content h2 { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 10px; margin-top: 18px; }
+    .seo-content h2:first-child { margin-top: 0; }
+    .seo-content ul { padding-left: 18px; margin: 8px 0; }
+    .seo-content li { margin-bottom: 4px; }
+
+    footer {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      padding: 22px 24px;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { font-size: 12px; color: var(--muted); }
+  </style>
+
+  <!-- Schema.org structured data for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PPF Calculator 2025-26",
+    "description": "Calculate PPF maturity amount and interest for FY 2025-26 at 7.1% interest rate",
+    "url": "https://rupeecalc.in/ppf-calculator.html",
+    "applicationCategory": "FinanceApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon">₹</div>
+    <span class="logo-text">Rupee<span>Calc</span></span>
+  </a>
+  <div class="breadcrumb">
+    <a href="/">Home</a> &rsaquo; PPF Calculator
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="rate-badge">
+    <span>&#9679;</span> Current rate: 7.1% p.a. — Q1 FY 2025-26
+  </div>
+  <h1>PPF Calculator 2025-26</h1>
+  <p>Calculate your Public Provident Fund maturity amount and yearly interest. PPF interest is tax-free under EEE status — exempt at investment, growth, and withdrawal.</p>
+</div>
+
+<main>
+
+  <!-- CALCULATOR INPUTS -->
+  <div class="card">
+    <div class="card-title">Your details</div>
+
+    <div class="rate-info">
+      <div class="rate-dot"></div>
+      PPF interest rate: <strong>7.1% per annum</strong> — compounded yearly
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">
+        Yearly deposit
+        <span class="input-value" id="deposit-display">₹1,50,000</span>
+      </div>
+      <div class="input-row">
+        <input type="number" id="deposit" value="150000" min="500" max="150000" step="500" oninput="syncSlider('deposit','depositSlider'); calculate()">
+      </div>
+      <input type="range" id="depositSlider" min="500" max="150000" step="500" value="150000" oninput="syncInput('depositSlider','deposit'); calculate()">
+      <div class="range-labels"><span>₹500</span><span>₹1,50,000 (max)</span></div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">
+        Investment period
+        <span class="input-value" id="years-display">15 years</span>
+      </div>
+      <div class="input-row">
+        <input type="number" id="years" value="15" min="15" max="50" step="5" oninput="syncSlider('years','yearsSlider'); calculate()">
+      </div>
+      <input type="range" id="yearsSlider" min="15" max="50" step="5" value="15" oninput="syncInput('yearsSlider','years'); calculate()">
+      <div class="range-labels"><span>15 yrs (min)</span><span>50 yrs</span></div>
+    </div>
+
+    <div class="tax-banner">
+      <strong>&#10003; Triple tax benefit (EEE):</strong><br>
+      Deduction up to ₹1.5L/yr under Sec 80C &bull; Interest tax-free &bull; Maturity amount tax-free
+    </div>
+
+    <div class="results-grid">
+      <div class="result-item highlight">
+        <div class="result-label">Maturity amount</div>
+        <div class="result-value" id="maturity">₹0</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Total invested</div>
+        <div class="result-value" id="invested">₹0</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Total interest earned</div>
+        <div class="result-value" id="interest">₹0</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHART -->
+  <div class="card">
+    <div class="card-title">Growth over time</div>
+    <div class="chart-wrap">
+      <canvas id="growthChart" role="img" aria-label="PPF growth chart showing invested amount vs total value over years"></canvas>
+    </div>
+    <div style="display:flex;gap:16px;font-size:12px;color:var(--muted)">
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:#1a6b3c;display:inline-block"></span>Maturity value</span>
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:#b5ddc6;display:inline-block"></span>Amount invested</span>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="card full-width">
+    <div class="card-title">Yearly breakdown</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Deposited</th>
+            <th>Interest earned</th>
+            <th>Total invested</th>
+            <th>Balance</th>
+          </tr>
+        </thead>
+        <tbody id="breakdown-table"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section full-width">
+    <h2>Frequently asked questions about PPF</h2>
+
+    <details>
+      <summary>What is the current PPF interest rate in 2025-26?</summary>
+      <p>The PPF interest rate for Q1 FY 2025-26 (April–June 2025) is <strong>7.1% per annum</strong>, compounded annually. The government reviews this rate every quarter. It has remained at 7.1% since April 2020. Interest is calculated on the minimum balance between the 5th and last day of each month — so always deposit before the 5th to earn full monthly interest.</p>
+    </details>
+
+    <details>
+      <summary>What is the minimum and maximum deposit in PPF?</summary>
+      <p>The minimum deposit per year is <strong>₹500</strong> and the maximum is <strong>₹1,50,000</strong>. You can make a maximum of 12 deposits per year, in any amount above ₹50. The account becomes inactive if you fail to deposit the minimum ₹500 in any year, and you must pay a ₹50 penalty per missed year to reactivate it.</p>
+    </details>
+
+    <details>
+      <summary>What is the lock-in period of PPF?</summary>
+      <p>PPF has a mandatory lock-in period of <strong>15 years</strong>. After 15 years, you can either withdraw the full amount, or extend the account in 5-year blocks — with or without further contributions. Partial withdrawals are allowed from the 7th year onwards (up to 50% of balance at end of 4th year or preceding year, whichever is lower).</p>
+    </details>
+
+    <details>
+      <summary>Is PPF interest really tax-free?</summary>
+      <p>Yes. PPF has <strong>EEE (Exempt-Exempt-Exempt)</strong> tax status — the only investment with this benefit. Your yearly deposit is eligible for deduction up to ₹1.5L under Section 80C. The interest earned every year is completely tax-free. And the entire maturity amount — principal plus interest — is fully exempt from income tax.</p>
+    </details>
+
+    <details>
+      <summary>Can I take a loan against my PPF account?</summary>
+      <p>Yes. You can take a loan against your PPF account from the <strong>3rd to 6th year</strong> of opening the account. The loan amount can be up to 25% of the balance at the end of the 2nd year preceding the loan year. The interest charged is 1% above the PPF rate (currently 8.1%). The loan must be repaid within 36 months.</p>
+    </details>
+  </div>
+
+  <!-- SEO CONTENT -->
+  <div class="seo-content full-width">
+    <h2>How to use this PPF calculator</h2>
+    <p>Enter your <strong>yearly deposit amount</strong> (between ₹500 and ₹1,50,000) and select the <strong>investment period</strong> (minimum 15 years). The calculator instantly shows your maturity amount, total interest earned, and a yearly breakdown of how your PPF account grows.</p>
+    <p><strong>Example:</strong> If you deposit ₹1,50,000 every year for 15 years at 7.1% per annum, your maturity amount will be approximately ₹40.7 lakhs — on a total investment of ₹22.5 lakhs. That is ₹18.2 lakhs of completely tax-free interest.</p>
+
+    <h2>PPF calculator formula</h2>
+    <p>The PPF maturity amount is calculated using the compound interest formula: <strong>A = P × [((1+r)^n – 1) / r] × (1+r)</strong>, where P = annual deposit, r = annual interest rate (7.1% = 0.071), and n = number of years. Interest is compounded annually and credited at the end of each financial year on 31st March.</p>
+
+    <h2>Why invest in PPF?</h2>
+    <ul>
+      <li>Government-backed — zero credit risk</li>
+      <li>Triple tax exemption under EEE status</li>
+      <li>Higher interest than most savings deposits</li>
+      <li>Partial withdrawal available from year 7</li>
+      <li>Loan facility available from year 3</li>
+      <li>Cannot be seized by courts or creditors</li>
+    </ul>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="/">All Calculators</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/privacy.html">Privacy Policy</a>
+  </div>
+  <div class="footer-copy">
+    &copy; 2025 RupeeCalc &mdash; For reference only. Verify rates with your bank or NSDL before investing.
+  </div>
+</footer>
+
+<script>
+const PPF_RATE = 0.071;
+let growthChart;
+
+function fmt(n) {
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+
+function syncSlider(inputId, sliderId) {
+  const val = document.getElementById(inputId).value;
+  document.getElementById(sliderId).value = val;
+  updateDisplays();
+}
+function syncInput(sliderId, inputId) {
+  const val = document.getElementById(sliderId).value;
+  document.getElementById(inputId).value = val;
+  updateDisplays();
+}
+function updateDisplays() {
+  const deposit = parseFloat(document.getElementById('deposit').value) || 0;
+  const years = parseInt(document.getElementById('years').value) || 15;
+  document.getElementById('deposit-display').textContent = fmt(deposit);
+  document.getElementById('years-display').textContent = years + ' years';
+}
+
+function calculate() {
+  updateDisplays();
+  const deposit = parseFloat(document.getElementById('deposit').value) || 0;
+  const years = parseInt(document.getElementById('years').value) || 15;
+  const r = PPF_RATE;
+
+  let balance = 0;
+  let totalInvested = 0;
+  const rows = [];
+  const chartLabels = [];
+  const chartMaturity = [];
+  const chartInvested = [];
+
+  for (let y = 1; y <= years; y++) {
+    balance = (balance + deposit) * (1 + r);
+    totalInvested += deposit;
+    const interestThisYear = balance - totalInvested;
+    rows.push({ year: y, deposit, interestThisYear, totalInvested, balance });
+    chartLabels.push('Yr ' + y);
+    chartMaturity.push(Math.round(balance));
+    chartInvested.push(Math.round(totalInvested));
+  }
+
+  const maturity = balance;
+  const invested = totalInvested;
+  const interest = maturity - invested;
+
+  document.getElementById('maturity').textContent = fmt(maturity);
+  document.getElementById('invested').textContent = fmt(invested);
+  document.getElementById('interest').textContent = fmt(interest);
+
+  // Table
+  const tbody = document.getElementById('breakdown-table');
+  tbody.innerHTML = rows.map(r => `
+    <tr>
+      <td>Year ${r.year}</td>
+      <td>${fmt(r.deposit)}</td>
+      <td>${fmt(r.interestThisYear)}</td>
+      <td>${fmt(r.totalInvested)}</td>
+      <td>${fmt(r.balance)}</td>
+    </tr>
+  `).join('');
+
+  // Chart
+  if (growthChart) growthChart.destroy();
+  const ctx = document.getElementById('growthChart').getContext('2d');
+  growthChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: chartLabels,
+      datasets: [
+        {
+          label: 'Maturity value',
+          data: chartMaturity,
+          backgroundColor: '#1a6b3c',
+          borderRadius: 3,
+          borderSkipped: false
+        },
+        {
+          label: 'Amount invested',
+          data: chartInvested,
+          backgroundColor: '#b5ddc6',
+          borderRadius: 3,
+          borderSkipped: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.dataset.label + ': ₹' + ctx.parsed.y.toLocaleString('en-IN')
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { font: { size: 10 }, color: '#9b9a94', maxTicksLimit: 10, autoSkip: true },
+          grid: { display: false }
+        },
+        y: {
+          ticks: {
+            font: { size: 10 }, color: '#9b9a94',
+            callback: v => '₹' + (v >= 100000 ? (v/100000).toFixed(1) + 'L' : (v/1000).toFixed(0) + 'K')
+          },
+          grid: { color: '#f0ece4' }
+        }
+      }
+    }
+  });
+}
+
+// Init
+calculate();
+</script>
+
+</body>
+</html>
